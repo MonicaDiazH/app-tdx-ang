@@ -4,10 +4,6 @@ import {NotFoundPageComponent} from "./shared/pages/not-found-page/not-found-pag
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  },
-  {
     path: 'pokemon',
     loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule)
   },
