@@ -11,11 +11,13 @@
   <div class="col-6">
     <div class="p-3">
       <div class="profile-container">
-        <p class="text-lg white-color font-light pt-5 pb-5">Imagen perfil</p>
-        <div class="profile-image">
-          <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
+        <div class="p-8 profile-container-color">
+          <p class="text-lg white-color font-light pb-5 text-image">Imagen perfil</p>
+          <div class="profile-image">
+            <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
+          </div>
+          <button class="upload-button mt-5">Subir imagen</button>
         </div>
-        <button class="upload-button mt-5">Subir imagen</button>
       </div>
     </div>
   </div>
@@ -24,31 +26,40 @@
       <p class="accent-color text-lg">Tu información</p>
       <p class="secondary-color">Completa la siguiente información para completar tu perfil</p>
 
-      <div class="field">
-        <mat-form-field>
-          <mat-label>Nombre*</mat-label>
-          <input type="text" matInput placeholder="Nombre*">
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <mat-form-field>
-          <mat-label>Pasatiempo Favorito</mat-label>
-          <input type="text" matInput placeholder="Pasatiempo favorito">
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <mat-form-field>
-          <mat-label>Cumpleaños*</mat-label>
-          <input type="text" matInput placeholder="Cumpleaños*">
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <mat-form-field>
-          <mat-label>Documento*</mat-label>
-          <input type="text" matInput placeholder="Documento*">
-        </mat-form-field>
-      </div>
-      <button class="continue-button mt-5">Continuar</button>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" formControlName="fullName" class="mat-form-field-outline" matInput placeholder="Nombre">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Pasatiempo</mat-label>
+            <mat-select formControlName="hobbies" multiple>
+              <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby.code">
+                {{hobby.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Cumpleaños</mat-label>
+            <input formControlName="birthday" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ tipoDocumento }}</mat-label>
+            <input type="text" formControlName="identity" matInput placeholder="Documento">
+          </mat-form-field>
+        </div>
+        <button type="submit" class="continue-button mt-5">Continuar</button>
+      </form>
+
     </div>
   </div>
 </div>

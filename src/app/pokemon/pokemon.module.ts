@@ -6,6 +6,9 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../material/material.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {MaterialModule} from "../material/material.module";
     PokemonRoutingModule,
     MatInputModule,
     MaterialModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class PokemonModule { }
