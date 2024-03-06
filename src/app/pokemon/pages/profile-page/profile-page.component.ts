@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {SharedService} from "../../../shared/shared.service";
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit{
 
   public profileForm: FormGroup = this.fb.group({
     fullName: ['', [Validators.required]],
@@ -15,18 +17,19 @@ export class ProfilePageComponent {
 
   })
 
-  tipoDocumento: string = 'Documento';
+  documentType: string = 'Documento';
+  age: number = 0;
 
   hobbiesList = [
-    {code: "1", description: "Jugar Fútbol"},
-    {code: "2", description: "Jugar Basquetball"},
-    {code: "3", description: "Jugar Tennis"},
-    {code: "4", description: "Jugar Voleibol"},
-    {code: "5", description: "Jugar Fifa"},
-    {code: "6", description: "Jugar Videojuegos"}
+    "Jugar Fútbol",
+    "Jugar Basquetball",
+    "Jugar Tennis",
+    "Jugar Voleibol",
+    "Jugar Fifa",
+    "Jugar Videojuegos"
   ]
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private sharedService: SharedService, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,18 +37,28 @@ export class ProfilePageComponent {
       if (value) {
         const birthdayDate: Date = new Date(value);
         const today: Date = new Date();
-        const eighteenYearsAgo: Date = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+        const age: number = today.getFullYear() - birthdayDate.getFullYear();
+        this.age = age;
 
-        if (birthdayDate <= eighteenYearsAgo) {
-          this.tipoDocumento = 'Documento';
+        if (age >= 18) {
+          this.documentType = 'Documento';
         } else {
-          this.tipoDocumento = 'Carnet de Minoridad';
+          this.documentType = 'Carnet de Minoridad';
         }
       }
     })
   }
 
   onSubmit() {
-    this.profileForm.markAllAsTouched();
+    //this.profileForm.markAllAsTouched();
+    const data =
+      { fullName: this.profileForm.controls['fullName'].value,
+        age: this.age,
+        hobbies: this.profileForm.controls['hobbies'].value,
+        identity: this.profileForm.controls['identity'].value,
+        documentType: this.documentType
+      };
+    this.sharedService.sendData(data);
+    this.router.navigate(['/pokemon/selection']);
   }
 }

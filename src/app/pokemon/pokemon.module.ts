@@ -9,12 +9,14 @@ import {MaterialModule} from "../material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { PokemonSelectionComponent } from './pages/pokemon-selection/pokemon-selection.component';
 
 
 @NgModule({
   declarations: [
     LayoutPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    PokemonSelectionComponent
   ],
   imports: [
     CommonModule,

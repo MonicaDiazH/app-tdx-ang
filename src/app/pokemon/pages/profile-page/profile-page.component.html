@@ -37,8 +37,8 @@
           <mat-form-field appearance="outline">
             <mat-label>Pasatiempo</mat-label>
             <mat-select formControlName="hobbies" multiple>
-              <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby.code">
-                {{hobby.description}}
+              <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby">
+                {{hobby}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -53,13 +53,12 @@
         </div>
         <div class="field">
           <mat-form-field appearance="outline">
-            <mat-label>{{ tipoDocumento }}</mat-label>
+            <mat-label>{{ documentType }}</mat-label>
             <input type="text" formControlName="identity" matInput placeholder="Documento">
           </mat-form-field>
         </div>
         <button type="submit" class="continue-button mt-5">Continuar</button>
       </form>
-
     </div>
   </div>
 </div>
