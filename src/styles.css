@@ -65,17 +65,14 @@ mat-form-field {
 }
 
 .upload-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+  background-color: #f6f6f6;
+  color: #075cc0;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.upload-button:hover {
-  background-color: #0056b3;
+  border-style:dashed;
+  border-color: #075cc0;
 }
 
 .continue-button {

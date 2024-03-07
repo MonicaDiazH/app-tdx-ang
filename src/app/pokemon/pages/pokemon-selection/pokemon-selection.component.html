@@ -12,19 +12,19 @@
   <div class="col-6">
     <div class="p-3">
       <div class="profile-container">
-        <div class="p-8 profile-container-color">
+        <div class="p-8 profile-container-color align-content-center">
           <p class="text-lg white-color font-bold pb-5 text-image">{{ profileTrainer.fullName }}</p>
           <div class="profile-image align-content-center">
             <img *ngIf="trainerImage == undefined" class="toolbar-image" ngSrc="assets/img/default.png" alt="Pokemon" height="360" width="360">
             <img *ngIf="trainerImage != undefined" class="toolbar-image" [src]="trainerImage" alt="Trainer" height="1839" width="5000">
           </div>
-          <p *ngIf="profileTrainer.hobbies.length !== undefined" class="text-sm white-color font-light text-image"><span class="font-medium">Pasatiempo: </span></p>
+          <p *ngIf="profileTrainer.hobbies.length > 0" class="text-sm white-color font-light text-image"><span class="font-medium">Pasatiempo: </span></p>
           <p class="text-sm white-color font-light text-image" *ngFor="let hobby of profileTrainer.hobbies">
             {{hobby}}
           </p>
           <p class="text-sm white-color font-light text-image"><span class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
-          <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}
-            : </span>{{ profileTrainer.identity }}</p>
+          <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}:</span></p>
+          <p class="text-sm white-color font-light text-image">{{profileTrainer.identity}}</p>
         </div>
       </div>
     </div>

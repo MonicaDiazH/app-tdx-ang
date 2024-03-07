@@ -17,7 +17,10 @@
             <img *ngIf="trainerImage == undefined" class="toolbar-image" ngSrc="assets/img/default.png" alt="Pokemon" height="360" width="360">
             <img *ngIf="trainerImage != undefined" class="toolbar-image" [src]="trainerImage" alt="Trainer" height="1839" width="5000">
           </div>
-          <input type="file" (change)="onImageUpload($event)">
+          <div class="flex justify-content-center mt-6">
+          <button type="button" class="upload-button" (click)="fileInput.click()">Subir Imagen</button>
+          </div>
+          <input type="file" (change)="onImageUpload($event)" #fileInput hidden>
         </div>
       </div>
     </div>
