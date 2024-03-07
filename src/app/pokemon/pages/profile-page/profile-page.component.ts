@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {SharedService} from "../../../shared/shared.service";
+import {PokemonService} from "../../../services/pokemon.service";
+import {Trainer} from "../../../interfaces/trainer.interfaces";
 
 @Component({
   selector: 'app-profile-page',
@@ -13,8 +14,7 @@ export class ProfilePageComponent implements OnInit{
     fullName: ['', [Validators.required]],
     hobbies: [''],
     birthday: ['', [Validators.required]],
-    identity: ['', [Validators.required]],
-
+    identity: ['', [Validators.required]]
   })
 
   documentType: string = 'Documento';
@@ -29,7 +29,7 @@ export class ProfilePageComponent implements OnInit{
     "Jugar Videojuegos"
   ]
 
-  constructor(private fb: FormBuilder, private sharedService: SharedService, private router: Router) {
+  constructor(private fb: FormBuilder, private pokemonService: PokemonService, private router: Router) {
   }
 
   ngOnInit() {
@@ -51,14 +51,16 @@ export class ProfilePageComponent implements OnInit{
 
   onSubmit() {
     //this.profileForm.markAllAsTouched();
-    const data =
+    const data: Trainer =
       { fullName: this.profileForm.controls['fullName'].value,
         age: this.age,
+        birthday: this.profileForm.controls['birthday'].value,
         hobbies: this.profileForm.controls['hobbies'].value,
         identity: this.profileForm.controls['identity'].value,
-        documentType: this.documentType
+        typeIdentity: this.documentType,
+        image: 'imagenasdf'
       };
-    this.sharedService.sendData(data);
+    this.pokemonService.setTrainer(data);
     this.router.navigate(['/pokemon/selection']);
   }
 }

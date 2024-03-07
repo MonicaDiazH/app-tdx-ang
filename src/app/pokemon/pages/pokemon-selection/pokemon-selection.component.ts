@@ -1,57 +1,44 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SharedService} from "../../../shared/shared.service";
-import {Subscription} from "rxjs";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {PokemonList} from "../../../models/pokemon.list";
 import {PokemonService} from "../../../services/pokemon.service";
+import {PokemonResponse} from "../../../interfaces/pokemon-response.interfaces";
+import {Trainer} from "../../../interfaces/trainer.interfaces";
 
 @Component({
   selector: 'app-pokemon-selection',
   templateUrl: './pokemon-selection.component.html',
   styles: []
 })
-export class PokemonSelectionComponent implements OnDestroy, OnInit {
-  fullName: string = '';
-  age: number = 0;
-  hobbies: string = '';
-  identity: string = '';
-  documentType: string = '';
-  message:string = '¡Ya casi terminamos!';
-  private subscription: Subscription;
+export class PokemonSelectionComponent implements OnInit{
+  @ViewChild('txtTagInput')
+  public tagInput!: ElementRef<HTMLInputElement>;
+  message: string = '¡Ya casi terminamos!';
 
-  constructor(private sharedService: SharedService, private router: Router, private pokemonService: PokemonService) {
-    this.subscription = this.sharedService.data$.subscribe(data => {
-      if (data) {
-        this.fullName = data['fullName'];
-        this.age = data['age'];
-        this.hobbies = data['hobbies'];
-        this.identity = data['identity'];
-        this.documentType = data['documentType'];
-        this.message = '¡Ya casi terminamos!';
-      }
-      else{
-        this.message = 'Completa los datos en el formulario anterior';
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  constructor(private router: Router, private pokemonService: PokemonService) {
   }
 
   ngOnInit() {
-    this.getPage(1);
+    if(this.profileTrainer == undefined){
+      this.router.navigate(['/pokemon/profile']);
+    }
+  }
+
+  searchTag() {
+    const newTag = this.tagInput.nativeElement.value;
+    this.pokemonService.searchTag(newTag);
+    this.tagInput.nativeElement.value = '';
+  }
+
+  get pokemonsSelected():PokemonResponse[]{
+    return this.pokemonService.pokemonList;
+  }
+
+  get profileTrainer():Trainer{
+    return this.pokemonService.getTrainer();
   }
 
   backToProfile() {
     this.router.navigate(['/pokemon/profile']);
-  }
-
-  getPage(offset: number) {
-    this.pokemonService.getPokemonList(offset)
-      .subscribe((list: PokemonList[]) => {
-        console.log(list);
-      });
   }
 
 }

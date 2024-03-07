@@ -10,13 +10,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { PokemonSelectionComponent } from './pages/pokemon-selection/pokemon-selection.component';
+import { CardListComponent } from './pages/card-list/card-list.component';
+import {SharedModule} from "../shared/shared.module";
+import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 
 
 @NgModule({
   declarations: [
     LayoutPageComponent,
     ProfilePageComponent,
-    PokemonSelectionComponent
+    PokemonSelectionComponent,
+    CardListComponent,
+    ViewProfileComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +31,8 @@ import { PokemonSelectionComponent } from './pages/pokemon-selection/pokemon-sel
     NgOptimizedImage,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    SharedModule
   ]
 })
 export class PokemonModule { }
