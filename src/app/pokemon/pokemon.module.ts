@@ -6,7 +6,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../material/material.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { PokemonSelectionComponent } from './pages/pokemon-selection/pokemon-selection.component';
@@ -14,6 +14,7 @@ import { CardListComponent } from './pages/card-list/card-list.component';
 import {SharedModule} from "../shared/shared.module";
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProfilePageComponent,
     PokemonSelectionComponent,
     CardListComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatDatepickerModule,
     MatNativeDateModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule
   ]
 })
 export class PokemonModule { }

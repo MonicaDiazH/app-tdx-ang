@@ -54,4 +54,8 @@ export class ViewProfileComponent implements OnInit{
         return stat;
     }
   }
+
+  payment() {
+    this.router.navigate(['/pokemon/payment']);
+  }
 }
