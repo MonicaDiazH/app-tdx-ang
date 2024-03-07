@@ -1,0 +1,64 @@
+<div class="grid pt-6">
+  <div class="col-6">
+    <div class="p-3">
+      <p class="text-2xl accent-color">
+        <span class="font-bold">¡Gracias por comprar {{ profileTrainer.fullName }}!</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <div class="p-3">
+      <div class="profile-container">
+        <div class="p-8 profile-container-color">
+          <p class="text-lg white-color font-bold pb-5 text-image">Entrenador</p>
+          <div class="profile-image align-content-center">
+            <img *ngIf="trainerImage == undefined" class="toolbar-image" ngSrc="assets/img/default.png" alt="Pokemon"
+                 height="360" width="360">
+            <img *ngIf="trainerImage != undefined" class="toolbar-image" [src]="trainerImage" alt="Trainer"
+                 height="1839" width="5000">
+          </div>
+          <p *ngIf="profileTrainer.hobbies.length > 0" class="text-sm white-color font-light text-image"><span
+            class="font-medium">Pasatiempo: </span></p>
+          <p class="text-sm white-color font-light text-image" *ngFor="let hobby of profileTrainer.hobbies">
+            {{hobby}}
+          </p>
+          <p class="text-sm white-color font-light text-image"><span
+            class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
+          <p class="text-sm white-color font-light text-image"><span
+            class="font-medium">{{ profileTrainer.typeIdentity }}:</span></p>
+          <p class="text-sm white-color font-light text-image">{{profileTrainer.identity}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="p-3 ">
+      <p class="accent-color text-lg">Realizar Pago</p>
+      <p class="secondary-color">Completa la siguiente información para completar tu pago</p>
+
+      <form class="mt-4" [formGroup]="paymentForm" (ngSubmit)="processPayment()" autocomplete="off">
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Número de tarjeta</mat-label>
+            <input type="text" formControlName="cardNumber" class="mat-form-field-outline" matInput
+                   placeholder="Número de tarjeta">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Segundos de espera</mat-label>
+            <input type="number" formControlName="delaySeconds" class="mat-form-field-outline" matInput
+                   placeholder="Segundos de espera">
+          </mat-form-field>
+        </div>
+        <button type="submit" [disabled]="isButtonDisabled" class="continue-button">Pagar</button>
+
+        <div class="mt-6" *ngIf="paymentStatus">
+          {{ paymentStatus }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
