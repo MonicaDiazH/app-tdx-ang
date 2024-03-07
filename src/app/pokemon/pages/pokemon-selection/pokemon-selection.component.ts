@@ -9,7 +9,7 @@ import {Trainer} from "../../../interfaces/trainer.interfaces";
   templateUrl: './pokemon-selection.component.html',
   styles: []
 })
-export class PokemonSelectionComponent implements OnInit{
+export class PokemonSelectionComponent implements OnInit {
   @ViewChild('txtTagInput')
   public tagInput!: ElementRef<HTMLInputElement>;
   message: string = '¡Ya casi terminamos!';
@@ -18,7 +18,7 @@ export class PokemonSelectionComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this.profileTrainer == undefined){
+    if (this.profileTrainer == undefined) {
       this.router.navigate(['/pokemon/profile']);
     }
   }
@@ -29,16 +29,20 @@ export class PokemonSelectionComponent implements OnInit{
     this.tagInput.nativeElement.value = '';
   }
 
-  get pokemonsSelected():PokemonResponse[]{
+  get pokemonsSelected(): PokemonResponse[] {
     return this.pokemonService.pokemonList;
   }
 
-  get profileTrainer():Trainer{
+  get profileTrainer(): Trainer {
     return this.pokemonService.getTrainer();
   }
 
   backToProfile() {
     this.router.navigate(['/pokemon/profile']);
+  }
+
+  save() {
+    this.router.navigate(['/pokemon/view-profile']);
   }
 
 }

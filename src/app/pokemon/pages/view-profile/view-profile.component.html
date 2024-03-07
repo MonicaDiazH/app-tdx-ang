@@ -1,79 +1,54 @@
-<div class="container">
-  <div class="card-trainer p-4">
-    <div class="flex align-items-center justify-content-center">
-      <img src="trainer.jpg" alt="Entrenador" class="trainer-image mr-4" />
-      <div>
-        <h2>¡Hola José!</h2>
-        <p>Entrenador</p>
-        <p>Pasatiempo: Ver Series</p>
-        <p>Edad: 26 años</p>
-        <p>DUI: 05634225-1</p>
+<div class="grid pt-6">
+  <div class="col-6">
+    <div class="p-3">
+      <p class="text-2xl accent-color">
+        <span class="font-bold">¡Hola {{ profileTrainer.fullName }}!</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <div class="p-3">
+      <div class="profile-container">
+        <div class="p-8 profile-container-color">
+          <p class="text-lg white-color font-bold pb-5 text-image">Entrenador</p>
+          <div class="profile-image align-content-center">
+            <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
+          </div>
+          <p *ngIf="profileTrainer.hobbies.length !== undefined" class="text-sm white-color font-light text-image"><span
+            class="font-medium">Pasatiempo: </span></p>
+          <p class="text-sm white-color font-light text-image" *ngFor="let hobby of profileTrainer.hobbies">
+            {{hobby}}
+          </p>
+          <p class="text-sm white-color font-light text-image"><span
+            class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
+          <p class="text-sm white-color font-light text-image"><span
+            class="font-medium">{{ profileTrainer.typeIdentity }}
+            : </span>{{ profileTrainer.identity }}</p>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="card-pokemon p-4">
-    <h2 class="text-center mb-4">Mis Pokémon</h2>
-    <div class="flex justify-content-around">
-      <div class="text-center">
-        <img src="bulbasaur.png" alt="Bulbasaur" class="pokemon-image" />
-        <h3>Bulbasaur</h3>
-        <p>Planta/Veneno</p>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-label">HP</span>
-            <div class="stat-bar bg-green-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Ataque</span>
-            <div class="stat-bar bg-green-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Defensa</span>
-            <div class="stat-bar bg-green-300"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Ataque Especial</span>
-            <div class="stat-bar bg-green-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Defensa Especial</span>
-            <div class="stat-bar bg-green-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Velocidad</span>
-            <div class="stat-bar bg-green-500"></div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <img src="charmander.png" alt="Charmander" class="pokemon-image" />
-        <h3>Charmander</h3>
-        <p>Fuego</p>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-label">HP</span>
-            <div class="stat-bar bg-yellow-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Ataque</span>
-            <div class="stat-bar bg-yellow-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Defensa</span>
-            <div class="stat-bar bg-yellow-300"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Ataque Especial</span>
-            <div class="stat-bar bg-yellow-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat -label">Defensa Especial</span>
-            <div class="stat-bar bg-yellow-500"></div>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Velocidad</span>
-            <div class="stat-bar bg-yellow-500"></div>
+  <div class="col-6">
+    <div class="p-3 ">
+      <p class="accent-color text-2xl">Mis Pokémon</p>
+      <div *ngFor="let pokemon of pokemonsSelected" class="grid mt-3">
+        <div class="col">
+          <div class="p-3 border-round-sm bg-primary font-bold">
+            <div class="flex flex-wrap column-gap-4 row-gap-6 pt-3">
+              <div
+                class="border-round w-12rem h-6rem bg-primary flex flex-column align-items-center justify-content-center mt-5">
+                <img class="card-view-image" [src]="getPokemonImageUrl(pokemon)" alt="" height="1839" width="5000">
+                <span class="card-subtitle">#{{ pokemon.id | threeDigits }} {{ pokemon.name | titlecase }}
+                </span>
+              </div>
+              <div class="flex flex-column font-normal">
+                <p *ngFor="let stat of pokemon.stats">{{getStatName(stat.stat.name)}}:
+                  <mat-progress-bar mode="determinate" value="{{stat.base_stat}}"></mat-progress-bar>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

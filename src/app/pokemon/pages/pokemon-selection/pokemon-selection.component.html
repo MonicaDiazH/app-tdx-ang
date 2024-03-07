@@ -13,17 +13,17 @@
     <div class="p-3">
       <div class="profile-container">
         <div class="p-8 profile-container-color">
-          <p class="text-lg white-color font-bold pb-5 text-image">{{ profileTrainer?.fullName }}</p>
+          <p class="text-lg white-color font-bold pb-5 text-image">{{ profileTrainer.fullName }}</p>
           <div class="profile-image align-content-center">
             <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
           </div>
-          <p class="text-sm white-color font-light text-image"><span class="font-medium">Pasatiempo: </span></p>
-          <p class="text-sm white-color font-light text-image" *ngFor="let hobby of profileTrainer?.hobbies">
+          <p *ngIf="profileTrainer.hobbies.length !== undefined" class="text-sm white-color font-light text-image"><span class="font-medium">Pasatiempo: </span></p>
+          <p class="text-sm white-color font-light text-image" *ngFor="let hobby of profileTrainer.hobbies">
             {{hobby}}
           </p>
-          <p class="text-sm white-color font-light text-image"><span class="font-medium">Edad: </span>{{ profileTrainer?.age }}</p>
-          <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer?.typeIdentity }}
-            : </span>{{ profileTrainer?.identity }}</p>
+          <p class="text-sm white-color font-light text-image"><span class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
+          <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}
+            : </span>{{ profileTrainer.identity }}</p>
         </div>
       </div>
     </div>
@@ -39,6 +39,9 @@
         </mat-form-field>
       </div>
         <app-card-list [pokemonsSelected]="pokemonsSelected"></app-card-list>
+
+      <button *ngIf="pokemonsSelected.length !== undefined && pokemonsSelected.length == 3" class="continue-button mt-5" (click)="save()">Guardar</button>
+
     </div>
   </div>
 </div>

@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {path: 'profile', component: ProfilePageComponent},
       {path: 'selection', component: PokemonSelectionComponent},
-      {path: 'view', component: ViewProfileComponent},
+      {path: 'view-profile', component: ViewProfileComponent},
       {path: '**', redirectTo: 'profile'}
     ]
   }

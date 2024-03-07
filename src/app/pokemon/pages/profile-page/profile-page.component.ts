@@ -8,7 +8,7 @@ import {Trainer} from "../../../interfaces/trainer.interfaces";
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
 })
-export class ProfilePageComponent implements OnInit{
+export class ProfilePageComponent implements OnInit {
 
   public profileForm: FormGroup = this.fb.group({
     fullName: ['', [Validators.required]],
@@ -50,17 +50,20 @@ export class ProfilePageComponent implements OnInit{
   }
 
   onSubmit() {
-    //this.profileForm.markAllAsTouched();
-    const data: Trainer =
-      { fullName: this.profileForm.controls['fullName'].value,
-        age: this.age,
-        birthday: this.profileForm.controls['birthday'].value,
-        hobbies: this.profileForm.controls['hobbies'].value,
-        identity: this.profileForm.controls['identity'].value,
-        typeIdentity: this.documentType,
-        image: 'imagenasdf'
-      };
-    this.pokemonService.setTrainer(data);
-    this.router.navigate(['/pokemon/selection']);
+    if (this.profileForm.valid) {
+
+      const data: Trainer =
+        {
+          fullName: this.profileForm.controls['fullName'].value,
+          age: this.age,
+          birthday: this.profileForm.controls['birthday'].value,
+          hobbies: this.profileForm.controls['hobbies'].value,
+          identity: this.profileForm.controls['identity'].value,
+          typeIdentity: this.documentType,
+          image: 'imagenasdf'
+        };
+      this.pokemonService.setTrainer(data);
+      this.router.navigate(['/pokemon/selection']);
+    }
   }
 }

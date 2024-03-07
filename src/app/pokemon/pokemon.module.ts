@@ -13,6 +13,7 @@ import { PokemonSelectionComponent } from './pages/pokemon-selection/pokemon-sel
 import { CardListComponent } from './pages/card-list/card-list.component';
 import {SharedModule} from "../shared/shared.module";
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ViewProfileComponent } from './pages/view-profile/view-profile.componen
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    SharedModule
+    SharedModule,
+    MatProgressBarModule
   ]
 })
 export class PokemonModule { }

@@ -9,7 +9,7 @@ import {PokemonService} from "../../../services/pokemon.service";
   ]
 })
 export class CardListComponent {
-  baseImgUrl = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/';
+  baseImgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/';
 
   @Input()
   public pokemonsSelected: PokemonResponse[] = [];
