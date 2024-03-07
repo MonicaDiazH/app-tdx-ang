@@ -1,4 +1,4 @@
-<div class="flex flex-wrap column-gap-4 row-gap-6 pt-3">
+<div class="flex flex-wrap column-gap-4 row-gap-6 pt-6">
   <div *ngFor="let pokemon of pokemonsSelected" class="border-round w-12rem h-6rem bg-primary flex flex-column align-items-center justify-content-center">
     <img class="card-image" [src]="getPokemonImageUrl(pokemon)" alt="" height="1839" width="5000">
     <span class="card-subtitle mb-5">#{{ pokemon.id | threeDigits }} {{ pokemon.name | titlecase }}

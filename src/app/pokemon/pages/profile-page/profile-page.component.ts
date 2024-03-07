@@ -19,6 +19,7 @@ export class ProfilePageComponent implements OnInit {
 
   documentType: string = 'Documento';
   age: number = 0;
+  trainerImage: any;
 
   hobbiesList = [
     "Jugar Fútbol",
@@ -65,5 +66,17 @@ export class ProfilePageComponent implements OnInit {
       this.pokemonService.setTrainer(data);
       this.router.navigate(['/pokemon/selection']);
     }
+  }
+
+  onImageUpload(event: any): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.pokemonService.setTrainerImage(reader.result);
+      this.trainerImage = reader.result;
+    };
+
+    reader.readAsDataURL(file);
   }
 }

@@ -12,6 +12,7 @@ import {PokemonResponse} from "../../../interfaces/pokemon-response.interfaces";
 })
 export class ViewProfileComponent implements OnInit{
   baseImgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/';
+  trainerImage: any;
   constructor(private pokemonService: PokemonService, private router: Router) {
   }
 
@@ -19,6 +20,8 @@ export class ViewProfileComponent implements OnInit{
     if (this.profileTrainer == undefined) {
       this.router.navigate(['/pokemon/profile']);
     }
+
+    this.trainerImage = this.pokemonService.getTrainerImage();
   }
 
   get profileTrainer(): Trainer {

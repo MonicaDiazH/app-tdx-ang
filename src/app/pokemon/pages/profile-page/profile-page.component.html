@@ -14,9 +14,10 @@
         <div class="p-8 profile-container-color">
           <p class="text-lg white-color font-light pb-5 text-image">Imagen perfil</p>
           <div class="profile-image">
-            <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
+            <img *ngIf="trainerImage == undefined" class="toolbar-image" ngSrc="assets/img/default.png" alt="Pokemon" height="360" width="360">
+            <img *ngIf="trainerImage != undefined" class="toolbar-image" [src]="trainerImage" alt="Trainer" height="1839" width="5000">
           </div>
-          <button class="upload-button mt-5">Subir imagen</button>
+          <input type="file" (change)="onImageUpload($event)">
         </div>
       </div>
     </div>

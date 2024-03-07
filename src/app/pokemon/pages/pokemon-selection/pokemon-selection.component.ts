@@ -13,6 +13,7 @@ export class PokemonSelectionComponent implements OnInit {
   @ViewChild('txtTagInput')
   public tagInput!: ElementRef<HTMLInputElement>;
   message: string = '¡Ya casi terminamos!';
+  trainerImage: any;
 
   constructor(private router: Router, private pokemonService: PokemonService) {
   }
@@ -21,6 +22,8 @@ export class PokemonSelectionComponent implements OnInit {
     if (this.profileTrainer == undefined) {
       this.router.navigate(['/pokemon/profile']);
     }
+
+    this.trainerImage = this.pokemonService.getTrainerImage();
   }
 
   searchTag() {

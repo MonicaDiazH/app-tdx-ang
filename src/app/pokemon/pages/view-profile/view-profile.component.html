@@ -14,7 +14,8 @@
         <div class="p-8 profile-container-color">
           <p class="text-lg white-color font-bold pb-5 text-image">Entrenador</p>
           <div class="profile-image align-content-center">
-            <img class="toolbar-image" ngSrc="assets/img/logo.png" alt="Pokemon" height="1839" width="5000">
+            <img *ngIf="trainerImage == undefined" class="toolbar-image" ngSrc="assets/img/default.png" alt="Pokemon" height="360" width="360">
+            <img *ngIf="trainerImage != undefined" class="toolbar-image" [src]="trainerImage" alt="Trainer" height="1839" width="5000">
           </div>
           <p *ngIf="profileTrainer.hobbies.length !== undefined" class="text-sm white-color font-light text-image"><span
             class="font-medium">Pasatiempo: </span></p>

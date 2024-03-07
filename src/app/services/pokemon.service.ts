@@ -10,8 +10,17 @@ export class PokemonService {
   private basePokeApiUrl = 'https://pokeapi.co/api/v2/';
   private trainer: Trainer | undefined;
   public pokemonList: PokemonResponse[] = [];
+  private trainerImage: any;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
+  }
+
+  setTrainerImage(image: any): void {
+    this.trainerImage = image;
+  }
+
+  getTrainerImage(): any {
+    return this.trainerImage;
   }
 
   setTrainer(trainer: Trainer): void {
