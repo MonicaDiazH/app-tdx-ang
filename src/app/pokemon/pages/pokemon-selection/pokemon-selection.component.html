@@ -23,8 +23,8 @@
             {{hobby}}
           </p>
           <p class="text-sm white-color font-light text-image"><span class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
-          <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}:</span></p>
-          <p class="text-sm white-color font-light text-image">{{profileTrainer.identity}}</p>
+          <p *ngIf="profileTrainer.identity != ''" class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}:</span></p>
+          <p *ngIf="profileTrainer.identity != ''" class="text-sm white-color font-light text-image">{{profileTrainer.identity}}</p>
         </div>
       </div>
     </div>

@@ -26,6 +26,10 @@
             class="font-medium">Edad: </span>{{ profileTrainer.age }}</p>
           <p class="text-sm white-color font-light text-image"><span class="font-medium">{{ profileTrainer.typeIdentity }}:</span></p>
           <p class="text-sm white-color font-light text-image">{{profileTrainer.identity}}</p>
+
+          <div class="flex justify-content-center mt-6">
+            <button type="button" class="payment-button" (click)="payment()">Pagar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -52,7 +56,6 @@
           </div>
         </div>
       </div>
-      <button class="continue-button mt-5" (click)="payment()">Pagar</button>
     </div>
   </div>
 </div>

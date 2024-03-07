@@ -43,11 +43,23 @@ export class ProfilePageComponent implements OnInit {
 
         if (age >= 18) {
           this.documentType = 'Documento';
+          this.addIdentityValidation();
         } else {
           this.documentType = 'Carnet de Minoridad';
+          this.removeIdentityValidation();
         }
       }
     })
+  }
+
+  addIdentityValidation() {
+    this.profileForm.get('identity')?.setValidators([Validators.required, Validators.pattern(/^\d{8}-\d$/)]);
+    this.profileForm.get('identity')?.updateValueAndValidity();
+  }
+
+  removeIdentityValidation() {
+    this.profileForm.get('identity')?.clearValidators();
+    this.profileForm.get('identity')?.updateValueAndValidity();
   }
 
   onSubmit() {
